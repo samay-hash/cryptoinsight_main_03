@@ -25,6 +25,7 @@ export default async function handler(req, res) {
             email,
             password: hashedPassword,
           },
+         
         });
         const token = jwt.sign(
           { userId: user.id, email: user.email },
