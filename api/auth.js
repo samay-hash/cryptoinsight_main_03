@@ -10,7 +10,7 @@ export default async function handler(req, res) {
 
     try {
       if (req.url.endsWith('/signup')) {
-        // Signup logic
+        // Signup 
         const existingUser = await prisma.user.findUnique({
           where: { email },
         });
@@ -41,7 +41,7 @@ export default async function handler(req, res) {
           user: { id: user.id, email: user.email },
         });
       } else if (req.url.endsWith('/login')) {
-        // Login logic
+        // Login 
         const user = await prisma.user.findUnique({
           where: { email },
         });
@@ -49,7 +49,7 @@ export default async function handler(req, res) {
         if (!user) {
           return res.status(400).json({ message: "Invalid email or password" });
         }
-
+        
         const isPasswordValid = await bcrypt.compare(password, user.password);
 
         if (!isPasswordValid) {
